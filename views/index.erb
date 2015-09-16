@@ -8,6 +8,32 @@
 <body>
   <div class="container">
     <h1>Sample</h1>
+    <div class="submit">
+        <form method="post" action="/" enctype="multipart/form-data">
+          <div class="form-text">
+            <textarea name="ex_text" id="ex-text"></textarea>
+          </div>
+          <div class="form-file">
+            <input type="file" name="file" value="file">
+          </div>
+          <div class="form-submit">
+            <input type="submit" name="submit" value="submit">
+          </div>
+    </form>
+    <% posts.each do |post| %>
+      <div class="post">
+        <div class="post-text">
+          <%= escape_html post['text'] %>
+        </div>
+        <div class="post-image">
+          <img src="/uploads/<%= post["img_file_name"]%>" alt="<%= post["img_file_name"] %>" class="ex-image">
+        </div>
+        <div class="tools">
+          <a href="/star?post_id=<%= post["id"] %>"> スターを増やす </a><br>
+          <span class="add-star"><%= post["star_count"]%></span>
+        </div>
+      </div>
+    <% end %>
   </div>
   <script src="/js/main.js"></script>
 </body>
